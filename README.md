@@ -1,18 +1,14 @@
-[![Build Status](https://travis-ci.org/koopjs/koop-provider-geojson.svg?branch=master)](https://travis-ci.org/koopjs/koop-provider-geojson) [![Greenkeeper badge](https://badges.greenkeeper.io/koopjs/koop-provider-geojson.svg)](https://greenkeeper.io/)
+# Koop Fulcrum Query API Provider
 
+This is a custom provider to simplify the use of the [Fulcrum Query API](https://learn.fulcrumapp.com/dev/query/intro) with Koop.
 
-# Koop Fulcrum Data Share Provider
+Example usage: `/fulcrum-qapi/{query_id}/FeatureServer/0/query`
 
-This is a geojson that demonstrates how to build a Koop Provider. Full documentation is provided [here](https://koopjs.github.io/docs/specs/provider/).
+The value for the 'query_id' parameter must match an entry in the "queries" property of the 'settings' object defined in `qapi.js`.
 
-`/fulcrum/{share_id}/FeatureServer/0/query`
+In the example provided here, the URL `/fulcrum-qapi/geobooze/FeatureServer/0/query` will look up the query stored in the `geobooze` entry and execute the query `SELECT * FROM GeoBooze LIMIT 1;`.
 
-Example:
-With the following Fulcrum data share URL: https://web.fulcrumapp.com/shares/0f9c51f389d22079.geojson
-
-The 'share_id' value will be 0f9c51f389d22079
-
-The resulting Koop URL will be: /fulcrum/0f9c51f389d22079/FeatureServer/0/query
+A Fulcrum API is required and must be entered into the `apiKey` entry in `qapi.js`.
 
 ## Files
 
@@ -20,6 +16,7 @@ The resulting Koop URL will be: /fulcrum/0f9c51f389d22079/FeatureServer/0/query
 | --- | --- | --- |
 | `index.js` | Mandatory | Configures provider for usage by Koop |
 | `model.js` | Mandatory | Translates data share to feature service |
+| `qapi.js` | Mandatory | Configures Fulcrum query API, set API key here |
 | `routes.js` | Optional | Specifies additional routes to be handled by this provider |
 | `controller.js` | Optional | Handles additional routes specified in `routes.js` |
 | `server.js` | Optional | Reference implementation for the provider |
@@ -33,17 +30,7 @@ Run server:
 - `DEPLOY=dev node server.js`
 
 Example API Query:
-- `curl localhost:8080/fulcrum/FeatureServer/0/query?returnCountOnly=true`
+- `curl localhost:8080/fulcrum-qapi/FeatureServer/0/query?returnCountOnly=true`
 
 Tests:
 - `npm test`
-
-## With Docker
-
-- `docker build -t koop-provider-geojson .`
-- `docker run -it -p 8080:8080 koop-provider-geojson`
-
-## Publish to npm
-- run `npm init` and update the fields
-  - Choose a name like `koop-provider-foo`
-- run `npm publish`
