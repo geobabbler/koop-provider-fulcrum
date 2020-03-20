@@ -8,7 +8,7 @@
 
 const provider = {
   type: 'provider',
-  name: 'geojson',
+  name: 'fulcrum',
   hosts: false,
   disableIdParam: false,
   Controller: require('./controller'),

@@ -13,7 +13,8 @@ function Model (koop) {}
 // This is the only public function you need to implement
 Model.prototype.getData = function (req, callback) {
   // convert gist.github.com|id|6de6fe4ccdea85b8.geojson
-  let url = req.params.id.replace(/\|/g,'/');
+  let share_id = req.params.id.replace(/\|/g,'/');
+  let url = `https://web.fulcrumapp.com/shares/${share_id}.geojson`
 
   // Available parameters:
   // req.params.host
@@ -21,7 +22,7 @@ Model.prototype.getData = function (req, callback) {
   // req.params.layer
   // req.params.method
 
-  request(`http://${url}`, (err, res, body) => {
+  request(`${url}`, (err, res, body) => {
     if (err) return callback(err)
     // translate the response into geojson
     const geojson = translate(body)
@@ -34,6 +35,7 @@ Model.prototype.getData = function (req, callback) {
     }
     geojson.metadata.title = "Koop GeoJSON"
     geojson.metadata.description = `Data from ${url}`;
+    // geojson.metadata.idField = `fulcrum_id`;
 
     // hand off the data to Koop
     callback(null, geojson)
