@@ -1,22 +1,18 @@
 [![Build Status](https://travis-ci.org/koopjs/koop-provider-geojson.svg?branch=master)](https://travis-ci.org/koopjs/koop-provider-geojson) [![Greenkeeper badge](https://badges.greenkeeper.io/koopjs/koop-provider-geojson.svg)](https://greenkeeper.io/)
 
 
-# Koop geojson Provider
+# Koop Fulcrum Data Share Provider
 
 This is a geojson that demonstrates how to build a Koop Provider. Full documentation is provided [here](https://koopjs.github.io/docs/specs/provider/).
 
-`/geojson/{url|pipe|path}/FeatureServer/0/query`
+`/fulcrum/{share_id}/FeatureServer/0/query`
 
-where the `URL` changes `/` to `|` for including in the url. e.g.
+Example:
+With the following Fulcrum data share URL: https://web.fulcrumapp.com/shares/0f9c51f389d22079.geojson
 
-`example.com%7Cshares%7C6de6fe4ccdea85b8.geojson`
+The 'share_id' value will be 0f9c51f389d22079
 
-To try this out, here are few example services:
-
-- [Harvey crowdsource data](https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/web.fulcrumapp.com%7Cshares%7C6de6fe4ccdea85b8.geojson/FeatureServer/0) & [map](https://www.arcgis.com/home/webmap/viewer.html?url=https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/web.fulcrumapp.com%7Cshares%7C6de6fe4ccdea85b8.geojson/FeatureServer/0)
-- [DC boundary](https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/raw.githubusercontent.com|unitedstates|districts|gh-pages|states|DC|shape.geojson/FeatureServer/0) & [map](https://www.arcgis.com/home/webmap/viewer.html?url=https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/raw.githubusercontent.com|unitedstates|districts|gh-pages|states|DC|shape.geojson/FeatureServer/0)
-- [US Boundaries](https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/eric.clst.org|wupl|Stuff|gz_2010_us_outline_500k.json/FeatureServer/0) &  [map](http://www.arcgis.com/home/webmap/viewer.html?url=https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/eric.clst.org|wupl|Stuff|gz_2010_us_outline_500k.json/FeatureServer/0)
-- [US Counties](https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/eric.clst.org|wupl|Stuff|gz_2010_us_050_00_500k.json/FeatureServer/0) & [map](http://www.arcgis.com/home/webmap/viewer.html?extent=-120.20,30.055,-117.19,40.06&url=https://howtfcbn0c.execute-api.us-east-1.amazonaws.com/latest/geojson/eric.clst.org|wupl|Stuff|gz_2010_us_050_00_500k.json/FeatureServer/0)
+The resulting Koop URL will be: /fulcrum/0f9c51f389d22079/FeatureServer/0/query
 
 If you want to write your own provider, simply fork this repository or copy the contents.
 
