@@ -14,14 +14,12 @@ The 'share_id' value will be 0f9c51f389d22079
 
 The resulting Koop URL will be: /fulcrum/0f9c51f389d22079/FeatureServer/0/query
 
-If you want to write your own provider, simply fork this repository or copy the contents.
-
 ## Files
 
 | File | | Description |
 | --- | --- | --- |
 | `index.js` | Mandatory | Configures provider for usage by Koop |
-| `model.js` | Mandatory | Translates remote API to GeoJSON |
+| `model.js` | Mandatory | Translates data share to feature service |
 | `routes.js` | Optional | Specifies additional routes to be handled by this provider |
 | `controller.js` | Optional | Handles additional routes specified in `routes.js` |
 | `server.js` | Optional | Reference implementation for the provider |
@@ -35,7 +33,7 @@ Run server:
 - `DEPLOY=dev node server.js`
 
 Example API Query:
-- `curl localhost:8080/geojson/FeatureServer/0/query?returnCountOnly=true`
+- `curl localhost:8080/fulcrum/FeatureServer/0/query?returnCountOnly=true`
 
 Tests:
 - `npm test`
