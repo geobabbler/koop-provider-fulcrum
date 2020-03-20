@@ -8,7 +8,7 @@
 
 const provider = {
   type: 'provider',
-  name: 'fulcrum',
+  name: 'fulcrum-qapi',
   hosts: false,
   disableIdParam: false,
   Controller: require('./controller'),

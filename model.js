@@ -7,22 +7,31 @@
 */
 const request = require('request').defaults({gzip: true, json: true})
 const config = require('config')
+const qapi = require('./qapi.js')
 
 function Model (koop) {}
 
 // This is the only public function you need to implement
 Model.prototype.getData = function (req, callback) {
-  // convert gist.github.com|id|6de6fe4ccdea85b8.geojson
-  let share_id = req.params.id.replace(/\|/g,'/');
-  let url = `https://web.fulcrumapp.com/shares/${share_id}.geojson`
-
+  let query_id = req.params.id.replace(/\|/g,'/');
+  let query_text = encodeURIComponent(qapi.queries[query_id]);
+  console.log(query_text);
+  let url = `https://api.fulcrumapp.com/api/v2/query?token=${qapi.apiKey}&format=geojson&q=${query_text}`
+  console.log(url);
   // Available parameters:
   // req.params.host
   // req.params.id
   // req.params.layer
   // req.params.method
 
-  request(`${url}`, (err, res, body) => {
+  let opts = {
+    url: `${url}`,
+    headers: {
+      'User-Agent': 'koop'
+    }
+  }
+
+  request(opts, (err, res, body) => {
     if (err) return callback(err)
     // translate the response into geojson
     const geojson = translate(body)
@@ -44,7 +53,6 @@ Model.prototype.getData = function (req, callback) {
 
 // GeoJSON to GeoJSON
 function translate (input) {
-
   // GeoJSON can just be the geometry
   if( input.type === undefined || input.type === null || input.type != "FeatureCollection" ) {
 
@@ -68,7 +76,7 @@ function translate (input) {
       }
     }
   } else {
-
+    console.log("feature collection");
     // Or it's a feature collection
     return input;
   }
