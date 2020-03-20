@@ -1,9 +1,4 @@
-[![Build Status](https://travis-ci.org/koopjs/koop-provider-geojson.svg?branch=master)](https://travis-ci.org/koopjs/koop-provider-geojson) [![Greenkeeper badge](https://badges.greenkeeper.io/koopjs/koop-provider-geojson.svg)](https://greenkeeper.io/)
-
-
 # Koop Fulcrum Data Share Provider
-
-This is a geojson that demonstrates how to build a Koop Provider. Full documentation is provided [here](https://koopjs.github.io/docs/specs/provider/).
 
 `/fulcrum/{share_id}/FeatureServer/0/query`
 
@@ -37,13 +32,3 @@ Example API Query:
 
 Tests:
 - `npm test`
-
-## With Docker
-
-- `docker build -t koop-provider-geojson .`
-- `docker run -it -p 8080:8080 koop-provider-geojson`
-
-## Publish to npm
-- run `npm init` and update the fields
-  - Choose a name like `koop-provider-foo`
-- run `npm publish`
