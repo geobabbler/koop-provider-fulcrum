@@ -1,6 +1,6 @@
-# Koop Fulcrum Data Share Provider
+# Koop Fulcrum Query API Provider
 
-This is a custom provider to simplify the use of the Fulcrum Query API(https://learn.fulcrumapp.com/dev/query/intro) with Koop.
+This is a custom provider to simplify the use of the [https://learn.fulcrumapp.com/dev/query/intro]Fulcrum Query API with Koop.
 
 Example usage: `/fulcrum-qapi/{query_id}/FeatureServer/0/query`
 
