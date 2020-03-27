@@ -15,9 +15,9 @@ function Model (koop) {}
 Model.prototype.getData = function (req, callback) {
   let query_id = req.params.id.replace(/\|/g,'/');
   let query_text = encodeURIComponent(qapi.queries[query_id]);
-  console.log(query_text);
+  //console.log(query_text);
   let url = `https://api.fulcrumapp.com/api/v2/query?token=${qapi.apiKey}&format=geojson&q=${query_text}`
-  console.log(url);
+  //console.log(url);
   // Available parameters:
   // req.params.host
   // req.params.id
@@ -43,7 +43,7 @@ Model.prototype.getData = function (req, callback) {
       geojson.metadata = {};
     }
     geojson.metadata.title = "Koop GeoJSON"
-    geojson.metadata.description = `Data from ${url}`;
+    geojson.metadata.description = `Data from Fulcrum (https://www.fulcrumapp.com)`;
     // geojson.metadata.idField = `fulcrum_id`;
 
     // hand off the data to Koop
@@ -76,7 +76,7 @@ function translate (input) {
       }
     }
   } else {
-    console.log("feature collection");
+    //console.log("feature collection");
     // Or it's a feature collection
     return input;
   }
